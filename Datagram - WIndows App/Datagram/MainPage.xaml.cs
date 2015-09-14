@@ -30,10 +30,15 @@ namespace Datagram
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        //This program is just a demo to show how windows pc/mobile can be used 
+        //to control your home appliances through raspberry pi
+     
+        //azure object 
         AzureDBmanager adb;
         public MainPage()
         {
             this.InitializeComponent();
+            //Initalize multicast (open port/listen/create object etc)
             multi_cast();
             adb = new AzureDBmanager();
         }
@@ -48,9 +53,13 @@ namespace Datagram
         {
             try
             {
+                //get string length
                 uint stringLength = eventArguments.GetDataReader().UnconsumedBufferLength;
                  
+                    //read string from the stream
                     string receivedMessage = eventArguments.GetDataReader().ReadString(stringLength);
+
+                    //it is not possible to access controls from here
                     var ignore = Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                     do_job(eventArguments.RemoteAddress.ToString(), receivedMessage, eventArguments.RemotePort.ToString(),
                     eventArguments.LocalAddress.ToString()));
@@ -58,11 +67,11 @@ namespace Datagram
             }
             catch (Exception ex)
             {
-                bytes_s.Content = ex.ToString();
-                //discard any exceptions
-                //
+                //show exception on the Network Log textbox
+                bytes_s.Content = ex.ToString(); 
             }
         }
+        //Datagram socket object
         private DatagramSocket listenerSocket = null;
         /// <summary>
         /// initialize multicast
@@ -74,7 +83,9 @@ namespace Datagram
             //listenerSocket.MessageReceived += MessageReceived;
             listenerSocket.Control.MulticastOnly = true;
 
+            //datagram service name
             await listenerSocket.BindServiceNameAsync("22113");
+            //Datagram group IP
             listenerSocket.JoinMulticastGroup(new HostName("224.3.0.5"));
 
 
@@ -88,7 +99,7 @@ namespace Datagram
         {
             try
             {
-
+                ///if azure is off packets will not forward to azure db but to local network
                 if (!azure.IsOn)
                 {
                     IOutputStream outputStream;
@@ -101,6 +112,7 @@ namespace Datagram
                 }
                 else
                 { 
+                    //else access azure database and update command
                         adb.send(info, "WinPC"); 
 
                 }
@@ -110,13 +122,27 @@ namespace Datagram
 
             }
         }
+
+         
+        //if any network commands/messages received 
         private void do_job(string addrs, string msg_string, string port_, string local_addr_)
         {
+            //Clear rx box for smooth operation (if length is greater than 1000
             if (receiverbox.Text.Length > 1000)
                 receiverbox.Text = "";
 
+            ///set text
             receiverbox.Text= msg_string.ToString()+"\nFrom: " + addrs.ToString() + "\n" +receiverbox.Text;
         }
+
+        /// /////////////////////////////////////////////////////////////////////////////////////////////
+        /// /////////////////////////////////////////////////////////////////////////////////////////////
+        ///         /// /////////////////////////////////////////////////////////////////////////////////////////////
+        /// /////////////////////////////////////////////////////////////////////////////////////////////
+        /// /////////////////////////////////////////////////////////////////////////////////////////////
+        /////every command starts wirg '!' for eg. !A51 = '!' (COMMAND) + A (REPRESENTS A COMMAND) + 51 (SLAVE DEVICE ID)
+        /// ///////////////////////////////////////////////////////////////////////////////////////////// 
+        /// /////////////////////////////////////////////////////////////////////////////////////////////
 
         private void r1on_Click(object sender, RoutedEventArgs e)
         {
