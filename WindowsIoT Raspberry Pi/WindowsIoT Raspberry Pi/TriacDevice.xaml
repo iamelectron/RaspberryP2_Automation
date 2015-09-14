@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="WindowsIoT_Raspberry_Pi.TriacDevice"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WindowsIoT_Raspberry_Pi"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" RequestedTheme="Dark">
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="40,54,0,0" TextWrapping="Wrap" Text="Device Light Intensity Control" VerticalAlignment="Top"/>
+        <AppBarToggleButton x:Name="toggle_dim_bright" HorizontalAlignment="Left" Icon="Accept" Label="Slow Dim/Bright" Margin="261,40,0,0" VerticalAlignment="Top" Height="64" Width="216"   Checked="toggle_dim_bright_Checked"  Unchecked="toggle_dim_bright_Unchecked"/>
+        <Slider x:Name="slider" HorizontalAlignment="Left" Margin="40,103,0,0" VerticalAlignment="Top" Width="760" Maximum="140" ValueChanged="slider_ValueChanged" Height="47"/>
+        <ToggleSwitch x:Name="relay_on_off" Header="Solid State Relay" HorizontalAlignment="Left" Margin="665,50,0,0" VerticalAlignment="Top" Toggled="relay_on_off_Toggled"/>
+        <ToggleSwitch x:Name="buzzer" Header="Buzzer" HorizontalAlignment="Left" Margin="511,50,0,0" VerticalAlignment="Top" Toggled="buzzer_Toggled"/>
+        <ToggleButton x:Name="TimerControl" Content="Set Timer" HorizontalAlignment="Left" Height="32" Margin="40,205,0,0" VerticalAlignment="Top" Width="186" Checked="soc_Checked"/>
+        <TextBox x:Name="days" HorizontalAlignment="Left" Margin="231,205,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="hours" HorizontalAlignment="Left" Margin="390,205,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="minutes" HorizontalAlignment="Left" Margin="549,205,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="154"/>
+        <TextBox x:Name="seconds" HorizontalAlignment="Left" Margin="708,205,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="154"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="231,180,0,0" TextWrapping="Wrap" Text="Days" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="390,180,0,0" TextWrapping="Wrap" Text="Hours" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="549,180,0,0" TextWrapping="Wrap" Text="Minutes" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="708,180,0,0" TextWrapping="Wrap" Text="Seconds" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="40,242,0,0" TextWrapping="Wrap" Text="This Timer Works only with Triac 2 or Port 2 of the Triac Board. Set the timer and forget it." VerticalAlignment="Top"/>
+        <CheckBox x:Name="repeat" Content="Repeat" HorizontalAlignment="Left" Margin="40,175,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Page>

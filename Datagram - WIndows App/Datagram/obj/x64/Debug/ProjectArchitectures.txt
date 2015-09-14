@@ -1,0 +1,1 @@
+c:\VS\C#\Windows IoT\Datagram\Datagram\Datagram.csproj;x64

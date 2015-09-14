@@ -1,0 +1,18 @@
+﻿<Page
+    x:Class="WindowsIoT_Raspberry_Pi.motor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WindowsIoT_Raspberry_Pi"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ToggleButton x:Name="bup" Content="Up" HorizontalAlignment="Left" Height="147" Margin="223,89,0,0" VerticalAlignment="Top" Width="142" Checked="bup_KeyDown" Unchecked="bup_KeyUp"/>
+        <ToggleButton x:Name="bright" Content="Right" HorizontalAlignment="Left" Height="147" Margin="371,241,0,0" VerticalAlignment="Top" Width="142" Checked="bright_KeyDown" Unchecked="bright_KeyUp"/>
+        <ToggleButton x:Name="bleft" Content="Left" HorizontalAlignment="Left" Height="147" Margin="76,241,0,0" VerticalAlignment="Top" Width="142" Checked="bleft_KeyDown" Unchecked="bleft_KeyUp"/>
+        <ToggleButton x:Name="bdown" Content="Down" HorizontalAlignment="Left" Height="147" Margin="223,388,0,0" VerticalAlignment="Top" Width="142" Checked="bdown_KeyDown" Unchecked="bdown_KeyUp"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="558,241,0,0" TextWrapping="Wrap" Text="It is just a Test Page to show how flexible this Home Automation System is. You could add any number of similar pages for different kind of home appliances." VerticalAlignment="Top"/>
+
+    </Grid>
+</Page>

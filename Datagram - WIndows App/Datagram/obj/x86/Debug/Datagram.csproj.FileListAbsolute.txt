@@ -1,0 +1,10 @@
+c:\VS\C#\Windows IoT\Datagram\Datagram\obj\x86\Debug\App.g.i.cs
+c:\VS\C#\Windows IoT\Datagram\Datagram\obj\x86\Debug\App.g.cs
+c:\VS\C#\Windows IoT\Datagram\Datagram\obj\x86\Debug\MainPage.g.i.cs
+c:\VS\C#\Windows IoT\Datagram\Datagram\obj\x86\Debug\MainPage.g.cs
+c:\VS\C#\Windows IoT\Datagram\Datagram\obj\x86\Debug\XamlTypeInfo.g.cs
+c:\VS\C#\Windows IoT\Datagram\Datagram\obj\x86\Debug\App.xaml
+c:\VS\C#\Windows IoT\Datagram\Datagram\obj\x86\Debug\MainPage.xaml
+c:\VS\C#\Windows IoT\Datagram\Datagram\obj\x86\Debug\App.xbf
+c:\VS\C#\Windows IoT\Datagram\Datagram\obj\x86\Debug\MainPage.xbf
+c:\VS\C#\Windows IoT\Datagram\Datagram\obj\x86\Debug\XamlSaveStateFile.xml

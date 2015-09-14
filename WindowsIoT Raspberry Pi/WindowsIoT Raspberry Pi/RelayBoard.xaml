@@ -1,0 +1,29 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WindowsIoT_Raspberry_Pi"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:System="using:System"
+    x:Class="WindowsIoT_Raspberry_Pi.RelayBoard"
+    mc:Ignorable="d">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ToggleButton x:Name="device1" Content="Device 1" HorizontalAlignment="Left" Height="125" Margin="85,58,0,0" VerticalAlignment="Top" Width="184"  Tapped="device1_Tapped" Unchecked="device1_Unchecked" Checked="device1_Checked"/>
+        <ToggleButton x:Name="device4" Content="Device 4" HorizontalAlignment="Left" Height="125" Margin="85,445,0,0" VerticalAlignment="Top" Width="184"  Tapped="device4_Tapped" Checked="device4_Checked_1" Unchecked="device4_Unchecked"/>
+        <ToggleButton x:Name="device3" HorizontalAlignment="Left" Height="125" Margin="85,315,0,0" VerticalAlignment="Top" Width="184" Tapped="device3_Tapped" Content="Device 3" Checked="device3_Checked" Unchecked="device3_Unchecked"/>
+        <ToggleButton x:Name="device2" Content="Device 2" HorizontalAlignment="Left" Height="125" Margin="85,186,0,0" VerticalAlignment="Top" Width="184" Tapped="device2_Tapped" Checked="device2_Checked" Unchecked="device2_Unchecked"/>
+        <ToggleSwitch x:Name="timer2_on" Header="Toggle State After" HorizontalAlignment="Left" Margin="331,239,0,0" VerticalAlignment="Top" Toggled="timer2_on_Toggled"/>
+        <ToggleSwitch x:Name="timer3_on" Header="Toggle State After" HorizontalAlignment="Left" Margin="331,368,0,0" VerticalAlignment="Top" Toggled="timer3_on_Toggled"/>
+        <ToggleSwitch x:Name="timer4_on" Header="Toggle State After" HorizontalAlignment="Left" Margin="331,498,0,0" VerticalAlignment="Top" Toggled="timer4_on_Toggled"/>
+        <ToggleSwitch x:Name="timer1_on" Header="Toggle State After" HorizontalAlignment="Left" Margin="331,111,0,0" VerticalAlignment="Top" Toggled="timer1_on_Toggled"/>
+        <TimePicker x:Name="timer1_time" HorizontalAlignment="Left" Margin="490,111,0,0" VerticalAlignment="Top" ClockIdentifier="24HourClock" Header="Hour | Minute | Second" Time="0"/>
+        <TimePicker x:Name="timer2_time" HorizontalAlignment="Left" Margin="490,239,0,0" VerticalAlignment="Top" ClockIdentifier="24HourClock" Header="Hour | Minute | Second" Time="0"/>
+        <TimePicker x:Name="timer3_time" HorizontalAlignment="Left" Margin="490,366,0,0" VerticalAlignment="Top" ClockIdentifier="24HourClock" Header="Hour | Minute | Second" Time="0"/>
+        <TimePicker x:Name="timer4_time" HorizontalAlignment="Left" Margin="490,498,0,0" VerticalAlignment="Top" ClockIdentifier="24HourClock" Header="Hour | Minute | Second" Time="0"/>
+        <ComboBox x:Name="devic1_second" HorizontalAlignment="Left" Margin="737,140,0,0" VerticalAlignment="Top" Width="120"  IsSynchronizedWithCurrentItem="False"/>
+        <ComboBox x:Name="devic2_second" HorizontalAlignment="Left" Margin="737,268,0,0" VerticalAlignment="Top" Width="120" />
+        <ComboBox x:Name="devic3_second" HorizontalAlignment="Left" Margin="737,396,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="devic4_second" HorizontalAlignment="Left" Margin="737,524,0,0" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Page>
