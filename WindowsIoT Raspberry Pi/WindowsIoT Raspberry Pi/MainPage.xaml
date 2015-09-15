@@ -11,11 +11,12 @@
     <Grid x:Name="Grd" Background="Black" ManipulationMode="Rotate" 
           Margin="0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="495*"/>
-            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="265*"/>
+            <ColumnDefinition Width="1127*"/>
+            <ColumnDefinition Width="48*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Fill="#FF4B4B4B" Height="76" Stroke="Black" Grid.ColumnSpan="2" VerticalAlignment="Top"/>
-        <ScrollViewer x:Name="scrollv" Margin="259,0,0,2" Background="Red" VerticalAlignment="Bottom" Height="36" Grid.ColumnSpan="2">
+        <Rectangle Fill="#FF4B4B4B" Height="76" Stroke="Black" Grid.ColumnSpan="3" VerticalAlignment="Top"/>
+        <ScrollViewer x:Name="scrollv" Margin="259,0,0,2" Background="Red" VerticalAlignment="Bottom" Height="36" Grid.ColumnSpan="3">
             <TextBlock x:Name="scrolltext" TextWrapping="Wrap" Text="Status" Height="36" FontSize="19" Foreground="White" Width="761" VerticalAlignment="Bottom"/>
         </ScrollViewer>
         <AppBarButton x:Name="appBarButton" HorizontalAlignment="Left" Icon="Accept" Label="Exit" VerticalAlignment="Top" Height="73" Click="appBarButton_Click"/>
@@ -45,21 +46,23 @@
         <ToggleSwitch x:Name="autoupdate" Header="Auto Update" HorizontalAlignment="Left" Margin="100,9,0,0" VerticalAlignment="Top" Toggled="toggleSwitch_Toggled" Height="60" Width="115"/>
         <Rectangle Fill="#FF4B4B4B" HorizontalAlignment="Left" Margin="0,76,0,0" Stroke="Black" Width="259" Height="45" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock" Margin="15,96,0,0" TextWrapping="Wrap" Text="Device List" VerticalAlignment="Top" RenderTransformOrigin="0.871,0.29" HorizontalAlignment="Left" Height="20" Width="70"/>
-        <ScrollViewer x:Name="scroll" Height="131" Margin="259,0,0,38" Background="#FF191616" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
+        <ScrollViewer x:Name="scroll" Height="131" Margin="259,0,0,38" Background="#FF191616" VerticalAlignment="Bottom" Grid.ColumnSpan="3">
             <TextBlock x:Name="netlog" TextWrapping="Wrap"  
                        
                        Text="Network Log" RequestedTheme="Dark" Width="757"/>
 
         </ScrollViewer>
-        <TextBlock x:Name="Sensors" Margin="430,0,0,0" TextWrapping="Wrap" Text="Sensor Reading" FontSize="24.333" Foreground="White" RequestedTheme="Dark" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock x:Name="Sensors" Margin="165,0,0,0" TextWrapping="Wrap" Text="Sensor Reading" FontSize="24.333" Foreground="White" RequestedTheme="Dark" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1"/>
         <Rectangle Fill="#FF4B4B4B" HorizontalAlignment="Left" Height="169" Stroke="Black" VerticalAlignment="Bottom" Width="259"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="15,0,0,-9" TextWrapping="Wrap" Text="Windows IoT Home Automation" VerticalAlignment="Bottom" Height="45" />
         <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="15,0,0,38" TextWrapping="Wrap" Text="Raspberry Pi 2" VerticalAlignment="Bottom"/>
         <Image x:Name="img_home" HorizontalAlignment="Left" Height="81" Margin="10,0,0,58" VerticalAlignment="Bottom" Width="70" Source="Assets/home-icon.png" RenderTransformOrigin="0.566,-0.852"/>
         <Frame x:Name="frame" 
-               BorderThickness="10" Margin="259,81,0,172" Foreground="White" Grid.ColumnSpan="2"/>
-        <CheckBox x:Name="autocontrol" Content="Autocontrol" HorizontalAlignment="Left" Margin="430,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.125,-0.388"/>
-        <Button x:Name="screenshot" Content="Screenshot" HorizontalAlignment="Left" Height="64" Margin="259,0,0,0" VerticalAlignment="Top" Click="screenshot_Click"/>
+               BorderThickness="10" Margin="259,81,0,172" Foreground="White" Grid.ColumnSpan="3"/>
+        <CheckBox x:Name="autocontrol" Content="Autocontrol" HorizontalAlignment="Left" Margin="165,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.125,-0.388" Grid.Column="1"/>
+        <Button x:Name="screenshot" Content="Screenshot" HorizontalAlignment="Left" Height="64" Margin="259,0,0,0" VerticalAlignment="Top" Click="screenshot_Click" Grid.ColumnSpan="2"/>
+        <ProgressBar x:Name="progress_scan" Height="25" Margin="10,126,0,0" VerticalAlignment="Top" Width="242" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+        <ToggleButton x:Name="scan_slave" Content="Scan" HorizontalAlignment="Left" Margin="100,84,0,0" VerticalAlignment="Top" Width="154" Checked="scan_slave_Checked" Unchecked="scan_slave_Unchecked"/>
 
 
 

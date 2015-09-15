@@ -46,6 +46,8 @@ namespace WindowsIoT_Raspberry_Pi
         GpioPin nRF_CE;                                     //nRF CE Pin
         private DispatcherTimer timer,azureMonitor;                      //nRF Receive Data Timer
         private DispatcherTimer autoupdate_timer;                      //nRF Receive Data Timer
+
+        private DispatcherTimer scan_slaves_timer;          //timer for scanning slave devices
         private nRF nrf;
         private const string SPI_CONTROLLER_NAME = "SPI0";  /* nRF Connected to SPI0                        */
         private const Int32 SPI_CHIP_SELECT_LINE = 0;       /*nRF CSN (~Slave Select) connected to CS0*/
@@ -98,6 +100,10 @@ namespace WindowsIoT_Raspberry_Pi
             nRF_CE = gpio.OpenPin(26);
             timer = new DispatcherTimer();
             autoupdate_timer = new DispatcherTimer();
+            scan_slaves_timer = new DispatcherTimer();
+            //init scan timer
+            scan_slaves_timer.Tick += scan_slaves_proc;
+            scan_slaves_timer.Interval = TimeSpan.FromMilliseconds(500);
             azureMonitor = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(10);
             azureMonitor.Interval = TimeSpan.FromSeconds(1);
@@ -818,6 +824,38 @@ namespace WindowsIoT_Raspberry_Pi
             await CreateBitmapFromElement(this);
         }
 
+        private void scan_slave_Checked(object sender, RoutedEventArgs e)
+        {
+            dev_id_tmp = 0;
+            scan_slaves_timer.Start();  //start scanning : broadcast ID to get addme packet
+        }
+
+        //Scan timer procedure
+        byte dev_id_tmp = 0; //am declaring this variable here for a better understanding
+        private void scan_slaves_proc(object sender, object e)
+        {
+            byte[] bb =  {0xFF,0x00, 0x00   //1st payload byte = 0xFF this will command slaves to initiate addme packet
+            , 0x00 , 0x00 , 0x00 };
+
+            progress_scan.Value = ((dev_id_tmp / 255.0) * 100.0);
+
+            nrf_send_data(bb, dev_id_tmp, packet_type.update_packet);
+            if(dev_id_tmp == 255)
+            {
+                dev_id_tmp = 0;
+                scan_slave.IsChecked = false;
+                scan_slaves_timer.Stop();                       ///stop scanning if when id number reaches 255
+                return;
+            }
+            dev_id_tmp++;
+
+        }
+
+        private void scan_slave_Unchecked(object sender, RoutedEventArgs e)
+        {
+            progress_scan.Value = 100;
+            scan_slaves_timer.Stop();
+        }
 
         //Auto update timer for updating sensor data
         //This timer sends update packets to selected slave device for sensor reading
