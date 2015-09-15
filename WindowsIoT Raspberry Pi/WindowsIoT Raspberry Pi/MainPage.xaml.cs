@@ -194,6 +194,8 @@ namespace WindowsIoT_Raspberry_Pi
         }
 
 
+        //Azure Timer Tick every 1 second
+        //Check for new commands 
         private  void azureMonitor_tick(object sender, object e)
         {
             azureMonitor.Stop();
@@ -209,10 +211,14 @@ namespace WindowsIoT_Raspberry_Pi
 
         }
 
+        //background task
         public async void azure_work(object sender, EventArgs e)
         { 
             try
             {
+                ///Read azure db and if string is NoCommand
+                /// return
+                /// else execute command 
                 string[] s = await DBM.read();
             if (s[1] == "NoCommand")
                 return;
