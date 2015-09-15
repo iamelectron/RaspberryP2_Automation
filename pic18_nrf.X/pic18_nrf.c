@@ -73,12 +73,12 @@
 #pragma config EBTRB = OFF      // Boot Block Table Read Protection bit (Boot Block (000000-0007FFh) not protected from table reads executed in other blocks)
 
  ////////////////////////////define your device type and id
-//#define triac
-#define relay                    //////need to change according to your device
-#define device_id 59           //////need to change according to your device
+#define triac
+//#define relay                    //////need to change according to your device
+#define device_id 21           //////need to change according to your device
 ///////////////////////////////////////////////////////////
   
-#define device_type 4          //////need to change according to your device
+#define device_type 1         //////need to change according to your device
 ///Device type declaration for program 
 /*   c# device_type (declare device type accordingly
          public enum device_type : byte
@@ -188,6 +188,7 @@ int main() {
     /////////
     delay_ms(1000); //2 Seconds Delay before starting
     init_hardware();
+    TRIGGER_DELAY = 139;
     init_spi();///////////////  
     init_nrf();   
     LED1 = 1; 
@@ -356,6 +357,13 @@ int rxdt()
                     break;
                     
                     case update_packet:
+                        if(rxdat[4] == 0xFF)            //Respond to scan request of raspberry Pi
+                        {
+                            delay_ms(200);
+                            send_init();
+                            return;
+                        }
+                            
                         SELECT_LDR;  
                         ADC_START; 
                         while(ADC_CHECK);  
