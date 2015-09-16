@@ -320,8 +320,8 @@ int rxdt()
             LED1 = 0;
             RXpayload(rxdat); 
             CSN = 0;
-            xmitbyte(W_REGISTER + STATUS);
-            xmitbyte(STATUS_DEFAULT_VAL | STATUS_RX_DR);
+            xmitbyte(W_REGISTER + STATUS);						///write to status register
+            xmitbyte(STATUS_DEFAULT_VAL | STATUS_RX_DR);		///Restore status register
             CSN = 1;   
              
             nrf_FLUSH_RX();        
@@ -343,11 +343,13 @@ int rxdt()
                         device_4 = rxdat[7];
 #endif
 #ifdef relay      
+						//Assign relay control IOs, ie., 
                     R1 = rxdat[4];
                     R2 = rxdat[5]; 
                     R3 = rxdat[6];
                     R4 = rxdat[7];
                     
+					///store state in variables
                     device_1 = rxdat[4];
                     device_2 = rxdat[5];
                     device_3 = rxdat[6];
@@ -364,24 +366,26 @@ int rxdt()
                             return;
                         }
                             
-                        SELECT_LDR;  
+                        SELECT_LDR;		//slect LDR adc channel (refer corresponding statements.
                         ADC_START; 
-                        while(ADC_CHECK);  
+                        while(ADC_CHECK);	///wait until adc finishes its job
                             adc1 = ADRESH; 
                         delay_ms(100);
                         
-                        SELECT_TEMP; 
+                        SELECT_TEMP;		//select temps channel
                         ADC_START; 
                         while(ADC_CHECK);  
                             adc2 = ADRESH;  
                         delay_ms(100); 
                         
+						//count  = packet count
+						//assign adc value into tx[] variable
                         count++;
                         ch1[0] = count;
                         ch1[1] = adc1;
                         ch1[2] = adc2;
                         ch1[3] = PIR;
-                        send_data(ch1,update_packet);  
+                        send_data(ch1,update_packet);  //send data
                     break;
                 }
 
