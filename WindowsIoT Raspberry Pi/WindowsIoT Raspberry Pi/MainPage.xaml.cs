@@ -321,6 +321,7 @@ namespace WindowsIoT_Raspberry_Pi
                     else
                         temp = databyte[6] - 70;
 
+		    //Send intensity and buzzer on/off commands based light intensity and PIR sensors
                     if ((bool)autocontrol.IsChecked)
                     {
                         byte[] bb =  {0x00,0x00, 0x00
